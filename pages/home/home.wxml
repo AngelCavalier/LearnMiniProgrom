@@ -1,2 +1,24 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<!-- 展示轮播图 -->
+<w-swiper list="{{banners}}"/>
+
+<!-- 推荐数据展示 -->
+<w-recommend recommends="{{recommends}}" bind:imageload="handleImageLoad"/>
+
+<!-- 展示本周流行 -->
+<view class="popular">
+  <image src="/assets/images/home/popular_bg.jpg" mode="widthFix"/>
+</view>
+
+<!-- tab-control -->
+<w-tab-control titles="{{titles}}" 
+               bind:tabClick="handleTabClick" 
+               class="{{isTabFixed ? 'fixed' : ''}}"
+               id="tab-control"/>
+<w-tab-control titles="{{titles}}" wx:if="{{isTabFixed}}"/>
+
+<!-- 展示商品数据 -->
+<w-goods goods="{{goods[currentType].list}}"/>
+
+<!-- 回到顶部 -->
+<w-back-top wx:if="{{showBackTop}}"/>
